@@ -1,0 +1,23 @@
+<% include('../layouts/header.ejs'); %>
+
+<h1>Welcome <%= loginUserData.name %></h1>
+<a href="/admin/dashboard">Dashboard</a>
+
+<table>
+    <tr> 
+        <td><img src="/userImages/<%= loginUserData.image%>" height="100" width="100"></td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td><%= loginUserData.name %></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td><%= loginUserData.email %></td>
+    </tr>
+</table>
+
+<a href="/admin/logout">Logout</a>
+
+
+<% include('../layouts/footer.ejs'); %>

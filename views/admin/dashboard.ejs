@@ -1,0 +1,55 @@
+<% include('../layouts/header.ejs'); %>
+<h1>Dashboard</h1>
+
+<a href="/admin/new-user">Add New User</a> &nbsp;
+<a href="/admin/export-users">Export Users</a> &nbsp;
+<a href="/admin/export-users-pdf">Export Users PDF</a>
+<br><br>
+<form>
+    <input type="text" name="search" placeholder="name,email,mobile">
+    <input type="submit" value="Search">
+</form>
+<br><br>
+<table width="50%" border="1">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Image</th>
+        <th>Verified</th>
+    </tr>
+<%  
+ if(userData.length > 0){
+    for(let i = 0; i < userData.length; i++ ){  %>
+    <tr>
+        <td><%= userData[i].name %></td>
+        <td><%= userData[i].email %></td>
+        <td><%= userData[i].mobile %></td>
+        <td><img src="/userImages/<%= userData[i].image%>" height="100" width="100"></td>
+        <td> <% if(userData[i].is_verified == 1){ %>
+            <p>Verified</p>
+            <% }else{ %>
+            <p>Un Verified</p>
+            <% } %></td>
+    </tr>
+<%   } } else{ %>
+    <tr>
+        <td colspan="5">No Record Found!</td>
+    </tr>
+ <% } %>
+   
+</table>
+<br/>
+<br/>
+<%
+  for(let j = 1; j <= totalPages; j++){
+   %>
+   <a href="?page=<%= j %>"><%= j %></a>
+   <%
+  }
+%>
+
+<br/>
+<br/>
+<a href="/admin/home">Go To Home</a>
+<% include('../layouts/footer.ejs'); %>
